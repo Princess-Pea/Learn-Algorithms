@@ -7,14 +7,16 @@ private:
 	struct Node
 	{
 		int data;
-		Node* next;
+		Node *next;
 		Node(int x = 0) : data(x), next(nullptr) {}
 	};
-	Node* head = new Node(), * front = nullptr, * rear = nullptr;
-	
+	Node *head = new Node(), *front = nullptr, *rear = nullptr;
+
 public:
-	~Queue() {
-		while (!IsEmpty()) dequeue();
+	~Queue()
+	{
+		while (!IsEmpty())
+			dequeue();
 		cout << "Oops!" << endl;
 		delete head;
 	}
@@ -24,7 +26,7 @@ public:
 	}
 	void enqueue(int x)
 	{
-		Node* temp = new Node(x);
+		Node *temp = new Node(x);
 		if (IsEmpty())
 		{
 			head->next = temp;
@@ -38,8 +40,9 @@ public:
 	}
 	void dequeue()
 	{
-		if (IsEmpty()) return;
-		Node* temp = front;
+		if (IsEmpty())
+			return;
+		Node *temp = front;
 		if (front == rear)
 		{
 			head->next = front = rear = nullptr;
@@ -49,11 +52,11 @@ public:
 			head->next = front->next;
 			front = front->next;
 		}
-		delete(temp);
+		delete (temp);
 	}
 	void show() const
 	{
-		for (Node* v = head->next; v; v = v->next)
+		for (Node *v = head->next; v; v = v->next)
 			cout << v->data << ' ';
 		cout << endl;
 	}
