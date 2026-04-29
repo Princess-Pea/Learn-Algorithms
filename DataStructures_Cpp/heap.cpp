@@ -55,3 +55,51 @@ void iterative_siftup(int i)
         }
     }
 }
+
+void heapify(int i, int size)
+{
+    int largest = i; // 假设当前节点是最大的
+    int l = left(i);
+    int r = right(i);
+
+    if (l < size && heap[l] > heap[largest])
+    {
+        largest = l; // 更新最大值索引为左子节点
+    }
+    if (r < size && heap[r] > heap[largest])
+    {
+        largest = r; // 更新最大值索引为右子节点
+    }
+    if (largest != i)
+    {
+        swap(heap[i], heap[largest]); // 交换当前节点与最大值节点
+        heapify(largest, size);       // 递归调整被交换的子树
+    }
+}
+
+void heapify(int i, int size)
+{
+    while (true)
+    {
+        int largest = i;
+        int l = left(i);
+        int r = right(i);
+        if (l < size && heap[l] > heap[largest])
+        {
+            largest = l;
+        }
+        if (r < size && heap[r] > heap[largest])
+        {
+            largest = r;
+        }
+        if (largest != i)
+        {
+            swap(heap[i], heap[largest]);
+            i = largest;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
