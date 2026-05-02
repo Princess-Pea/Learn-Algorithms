@@ -132,3 +132,14 @@ void siftdown(int i, int size)
         }
     }
 }
+
+void pop(int &size)
+{
+    if (size == 0)
+    {
+        throw out_of_range("堆为空");
+    }
+    swap(heap[0], heap[size - 1]); // 将堆顶元素与最后一个元素交换
+    size--;                        // 减小堆的大小
+    siftdown(0, size);             // 从堆顶开始调整堆
+}
