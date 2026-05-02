@@ -103,3 +103,32 @@ void heapify(int i, int size)
         }
     }
 }
+
+// 通常，调用 siftDown(i) 时，已经保证：
+// 以节点 i 的左孩子 left(i) 为根的子树，本身是一个合法的大顶堆。
+// 以节点 i 的右孩子 right(i) 为根的子树，本身也是一个合法的大顶堆。
+// 所以此时可能破坏堆性质的，只有节点 i 与它的直接子节点。
+void siftdown(int i, int size)
+{
+    while (true)
+    {
+        int l = left(i), r = right(i), ma = i;
+        if (l < size && heap[l] > heap[ma])
+        {
+            ma = l;
+        }
+        if (r < size && heap[r] > heap[ma])
+        {
+            ma = r;
+        }
+        if (ma != i)
+        {
+            swap(heap[i], heap[ma]);
+            i = ma;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
